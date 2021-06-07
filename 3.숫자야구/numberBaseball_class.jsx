@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, createRef } from "react";
 import Try from "./try";
 
 function getNumbers() {
@@ -42,6 +42,8 @@ class NumberBaseball extends Component {
         answer: getNumbers(),
         tries: [],
       });
+
+      this.inputRef.current.focus();
     } else {
       //틀렸을 경우
       const answerArray = this.state.value.split("").map((v) => parseInt(v));
@@ -62,6 +64,8 @@ class NumberBaseball extends Component {
           answer: getNumbers(),
           tries: [],
         });
+
+        this.inputRef.current.focus();
       } else {
         for (let i = 0; i < 4; i += 1) {
           if (answerArray[i] === this.state.answer[i]) {
@@ -82,6 +86,7 @@ class NumberBaseball extends Component {
             value: "",
           };
         });
+        this.inputRef.current.focus();
       }
     }
   };
@@ -93,12 +98,15 @@ class NumberBaseball extends Component {
     });
   };
 
+  inputRef = createRef();
+
   render() {
     return (
       <>
         <h1>{this.state.result}</h1>
         <form onSubmit={this.onSubmitForm}>
           <input
+            ref={this.inputRef}
             maxLength={4}
             value={this.state.value}
             onChange={this.onChangeInput}
