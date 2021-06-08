@@ -1,5 +1,5 @@
 import React, { useState, memo, useRef } from "react";
-import Try from "./try";
+import Try from "./Try";
 
 function getNumbers() {
   //숫자 4개를 겹치지 않게 랜덤하게 뽑는 함수
